@@ -11,8 +11,8 @@ class HeroesViewModel : ViewModel() {
     val heroes: LiveData<List<Hero>>
         get() = _heroes
 
-    fun getHeroesList(): List<Hero> {
-        return listOf(
+    fun getHeroesList() {
+        _heroes.value = listOf(
             Hero("Spider-Man"),
             Hero("Iron Man"),
             Hero("Hulk"),

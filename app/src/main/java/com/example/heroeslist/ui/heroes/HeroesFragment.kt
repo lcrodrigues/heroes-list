@@ -6,8 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.heroeslist.R
+import kotlinx.android.synthetic.main.heroes_fragment.*
 
 
 class HeroesFragment : Fragment() {
@@ -31,7 +34,15 @@ class HeroesFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(HeroesViewModel::class.java)
 
-        
+        viewModel.heroes.observe(viewLifecycleOwner, Observer { heroes ->
+            recyclerViewHeroes.apply {
+                setHasFixedSize(true)
+                layoutManager = LinearLayoutManager(requireContext())
+                adapter = HeroesAdapter(heroes)
+            }
+        })
+
+        viewModel.getHeroesList()
     }
 
 }
