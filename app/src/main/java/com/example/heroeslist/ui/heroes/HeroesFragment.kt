@@ -9,6 +9,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.heroeslist.R
+import com.example.heroeslist.data.network.HeroesApi
+import com.example.heroeslist.data.repository.HeroesRepository
 import kotlinx.android.synthetic.main.heroes_fragment.*
 
 
@@ -19,6 +21,7 @@ class HeroesFragment : Fragment() {
     }
 
     private lateinit var viewModel: HeroesViewModel
+    private lateinit var factory: HeroesViewModelFactory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,7 +34,11 @@ class HeroesFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(HeroesViewModel::class.java)
+
+        val repository = HeroesRepository()
+
+        factory = HeroesViewModelFactory(repository)
+        viewModel = ViewModelProvider(this, factory).get(HeroesViewModel::class.java)
 
         viewModel.heroes.observe(viewLifecycleOwner, Observer { heroes ->
             recyclerViewHeroes.apply {
