@@ -1,7 +1,8 @@
-package com.example.heroeslist
+package com.example.heroeslist.ui.heroes
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.heroeslist.R
 
 class HeroesActivity : AppCompatActivity() {
 
