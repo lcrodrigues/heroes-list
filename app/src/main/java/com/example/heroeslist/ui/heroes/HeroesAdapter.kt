@@ -9,7 +9,7 @@ import com.example.heroeslist.data.model.Hero
 import com.example.heroeslist.databinding.HeroesListItemBinding
 
 class HeroesAdapter(
-    private val heroesList: List<Hero>
+    val heroesList: MutableList<Hero>
 ): RecyclerView.Adapter<HeroesAdapter.HeroesViewHolder>() {
     
     inner class HeroesViewHolder(

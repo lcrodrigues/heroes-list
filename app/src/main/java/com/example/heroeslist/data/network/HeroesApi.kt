@@ -18,7 +18,8 @@ interface HeroesApi {
         @Query("apikey") apiKey: String = PUBLIC_KEY,
         @Query("ts") ts: String,
         @Query("hash") hash: String = getMD5(ts),
-        @Query("limit") limit: Int = 40
+        @Query("limit") limit: Int,
+        @Query("offset") offset: Int
     ): Response<ResultWrapper>
 
     companion object {

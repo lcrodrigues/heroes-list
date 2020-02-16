@@ -26,7 +26,6 @@ fun getMD5(timeStamp: String): String {
             hash = "0$hash"
         }
 
-        Log.d("15022020", hash)
         return hash
     } catch (e: NoSuchAlgorithmException) {
         throw RuntimeException(e)

@@ -14,18 +14,33 @@ class HeroesViewModel(
 ) : ViewModel() {
 
     private lateinit var job: Job
-    private val _heroes = MutableLiveData<List<Hero>>()
-    val heroes: LiveData<List<Hero>>
+    private val _heroes = MutableLiveData<MutableList<Hero>>()
+    val heroes: LiveData<MutableList<Hero>>
         get() = _heroes
 
+    var totalItems: Int? = 0
+
     fun getHeroesList() {
+        val limit = 50
+        val offset = limit + (heroes.value?.count() ?: 0)
 
         job = Coroutines.ioThenMain(
-            { repository.getHeroes() },
+            { repository.getHeroes(limit, offset) },
             { wrapper ->
-                val list = wrapper?.data?.results
+                if(totalItems == 0) {
+                    totalItems = wrapper?.data?.total?.toIntOrNull()
+                }
 
-                _heroes.value = list
+                val list = _heroes.value ?: mutableListOf()
+                val listFromApi = wrapper?.data?.results
+
+                if(!listFromApi.isNullOrEmpty()) {
+                    list.addAll(listFromApi)
+                }
+
+                if(!list.isNullOrEmpty()) {
+                    _heroes.value = list
+                }
             }
         )
 
