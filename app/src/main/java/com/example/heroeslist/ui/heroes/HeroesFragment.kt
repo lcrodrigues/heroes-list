@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -58,7 +59,7 @@ class HeroesFragment : Fragment() {
 
     private fun setupRecyclerView() {
         recyclerViewHeroes.apply {
-            adapter = HeroesAdapter(mutableListOf())
+            adapter = HeroesAdapter(mutableListOf(), this@HeroesFragment::onHeroClick)
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(requireContext())
 
@@ -73,5 +74,9 @@ class HeroesFragment : Fragment() {
                 }
             })
         }
+    }
+
+    private fun onHeroClick(id: String) {
+        Toast.makeText(requireContext(), "Id do herói: ${id}.", Toast.LENGTH_SHORT).show()
     }
 }

@@ -9,5 +9,15 @@
         android:id="@+id/heroesFragment"
         android:name="com.example.heroeslist.ui.heroes.HeroesFragment"
         android:label="heroes_fragment"
-        tools:layout="@layout/heroes_fragment" />
+        tools:layout="@layout/heroes_fragment" >
+        <action
+            android:id="@+id/action_heroesFragment_to_heroDetailsFragment"
+            app:destination="@id/heroDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/heroDetailsFragment"
+        android:name="com.example.heroeslist.ui.details.HeroDetailsFragment"
+        android:label="hero_details_fragment"
+        tools:layout="@layout/hero_details_fragment" />
 </navigation>

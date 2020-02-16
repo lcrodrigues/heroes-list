@@ -9,15 +9,16 @@ import com.example.heroeslist.data.model.Hero
 import com.example.heroeslist.databinding.HeroesListItemBinding
 
 class HeroesAdapter(
-    val heroesList: MutableList<Hero>
-): RecyclerView.Adapter<HeroesAdapter.HeroesViewHolder>() {
-    
+    val heroesList: MutableList<Hero>,
+    private val callback: (String) -> Unit
+) : RecyclerView.Adapter<HeroesAdapter.HeroesViewHolder>() {
+
     inner class HeroesViewHolder(
         val heroesListItemBinding: HeroesListItemBinding
     ) : RecyclerView.ViewHolder(heroesListItemBinding.root)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeroesViewHolder =
-        HeroesViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeroesViewHolder {
+        val heroesViewHolder = HeroesViewHolder(
             DataBindingUtil.inflate(
                 LayoutInflater.from(parent.context),
                 R.layout.heroes_list_item,
@@ -25,6 +26,14 @@ class HeroesAdapter(
                 false
             )
         )
+
+        heroesViewHolder.itemView.setOnClickListener {
+            val id = heroesList[heroesViewHolder.adapterPosition].id
+            callback(id)
+        }
+
+        return heroesViewHolder
+    }
 
 
     override fun getItemCount(): Int = heroesList.count()
