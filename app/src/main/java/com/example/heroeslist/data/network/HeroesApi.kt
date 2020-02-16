@@ -3,7 +3,10 @@ package com.example.heroeslist.data.network
 
 import android.location.Address
 import com.example.heroeslist.data.model.comic.ComicWrapper
+import com.example.heroeslist.data.model.event.EventWrapper
 import com.example.heroeslist.data.model.hero.ResultWrapper
+import com.example.heroeslist.data.model.serie.SerieWrapper
+import com.example.heroeslist.data.model.story.StoryWrapper
 import com.example.heroeslist.util.PUBLIC_KEY
 import com.example.heroeslist.util.BASE_URL
 import com.example.heroeslist.util.getMD5
@@ -34,13 +37,40 @@ interface HeroesApi {
     ): Response<ResultWrapper>
 
     @GET("characters/{characterId}/{address}")
-    suspend fun getHeroAppearances(
+    suspend fun getHeroComics(
         @Path("characterId") id: String,
         @Path("address") address: String,
         @Query("apikey") apiKey: String = PUBLIC_KEY,
         @Query("ts") ts: String,
         @Query("hash") hash: String = getMD5(ts)
     ): Response<ComicWrapper>
+
+    @GET("characters/{characterId}/{address}")
+    suspend fun getHeroEvents(
+        @Path("characterId") id: String,
+        @Path("address") address: String,
+        @Query("apikey") apiKey: String = PUBLIC_KEY,
+        @Query("ts") ts: String,
+        @Query("hash") hash: String = getMD5(ts)
+    ): Response<EventWrapper>
+
+    @GET("characters/{characterId}/{address}")
+    suspend fun getHeroStories(
+        @Path("characterId") id: String,
+        @Path("address") address: String,
+        @Query("apikey") apiKey: String = PUBLIC_KEY,
+        @Query("ts") ts: String,
+        @Query("hash") hash: String = getMD5(ts)
+    ): Response<StoryWrapper>
+
+    @GET("characters/{characterId}/{address}")
+    suspend fun getHeroSeries(
+        @Path("characterId") id: String,
+        @Path("address") address: String,
+        @Query("apikey") apiKey: String = PUBLIC_KEY,
+        @Query("ts") ts: String,
+        @Query("hash") hash: String = getMD5(ts)
+    ): Response<SerieWrapper>
 
     companion object {
         operator fun invoke(): HeroesApi {

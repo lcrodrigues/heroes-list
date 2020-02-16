@@ -20,18 +20,70 @@ class ListViewModel(
 
 
     fun getList(mediaType: MediaType, id: String) {
-        job = Coroutines.ioThenMain(
-            { repository.getHeroAppearances(mediaType, id) },
-            { wrapper ->
-                val list = wrapper?.data?.results
-                val stringList = mutableListOf<String>()
+        job = when(mediaType) {
+            MediaType.Comics -> {
+                Coroutines.ioThenMain(
+                    { repository.getHeroComics(mediaType, id) },
+                    { wrapper ->
+                        val list = wrapper?.data?.results
+                        val stringList = mutableListOf<String>()
 
-                list?.forEach {
-                    stringList.add(it.title)
-                }
+                        list?.forEach {
+                            stringList.add(it.title)
+                        }
 
-                _itemList.value = stringList
+                        _itemList.value = stringList
+                    }
+                )
             }
-        )
+
+            MediaType.Stories -> {
+                Coroutines.ioThenMain(
+                    { repository.getHeroStories(mediaType, id) },
+                    { wrapper ->
+                        val list = wrapper?.data?.results
+                        val stringList = mutableListOf<String>()
+
+                        list?.forEach {
+                            stringList.add(it.title)
+                        }
+
+                        _itemList.value = stringList
+                    }
+                )
+            }
+
+            MediaType.Series -> {
+                Coroutines.ioThenMain(
+                    { repository.getHeroSeries(mediaType, id) },
+                    { wrapper ->
+                        val list = wrapper?.data?.results
+                        val stringList = mutableListOf<String>()
+
+                        list?.forEach {
+                            stringList.add(it.title)
+                        }
+
+                        _itemList.value = stringList
+                    }
+                )
+            }
+
+            MediaType.Events -> {
+                Coroutines.ioThenMain(
+                    { repository.getHeroEvents(mediaType, id) },
+                    { wrapper ->
+                        val list = wrapper?.data?.results
+                        val stringList = mutableListOf<String>()
+
+                        list?.forEach {
+                            stringList.add(it.title)
+                        }
+
+                        _itemList.value = stringList
+                    }
+                )
+            }
+        }
     }
 }

@@ -25,9 +25,36 @@ class HeroesRepository(
             )
         }
 
-    suspend fun getHeroAppearances(mediaType: MediaType, id: String) =
+    suspend fun getHeroComics(mediaType: MediaType, id: String) =
         apiRequest {
-            heroesApi.getHeroAppearances(
+            heroesApi.getHeroComics(
+                id = id,
+                address = mediaType.value,
+                ts = System.currentTimeMillis().toString()
+            )
+        }
+
+    suspend fun getHeroStories(mediaType: MediaType, id: String) =
+        apiRequest {
+            heroesApi.getHeroStories(
+                id = id,
+                address = mediaType.value,
+                ts = System.currentTimeMillis().toString()
+            )
+        }
+
+    suspend fun getHeroEvents(mediaType: MediaType, id: String) =
+        apiRequest {
+            heroesApi.getHeroEvents(
+                id = id,
+                address = mediaType.value,
+                ts = System.currentTimeMillis().toString()
+            )
+        }
+
+    suspend fun getHeroSeries(mediaType: MediaType, id: String) =
+        apiRequest {
+            heroesApi.getHeroSeries(
                 id = id,
                 address = mediaType.value,
                 ts = System.currentTimeMillis().toString()
