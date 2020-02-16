@@ -2,7 +2,7 @@ package com.example.heroeslist.data.model
 
 data class Hero(
     val comics: Comics,
-    val description: String,
+    var description: String,
     val events: Events,
     val id: String,
     val modified: String,

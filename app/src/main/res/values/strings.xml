@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">HeroesList</string>
+    <string name="no_description_available">No description available for this character.</string>
 </resources>

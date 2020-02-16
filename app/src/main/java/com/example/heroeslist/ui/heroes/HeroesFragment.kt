@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.heroeslist.R
 import com.example.heroeslist.data.network.HeroesApi
 import com.example.heroeslist.data.repository.HeroesRepository
-import com.example.heroeslist.util.BASE_URL
 import kotlinx.android.synthetic.main.heroes_fragment.*
 
 
@@ -74,7 +73,7 @@ class HeroesFragment : Fragment() {
                     val count = viewModel.heroes.value?.count() ?: 0
                     if (!canScrollVertically(1) &&
                         count < (viewModel.totalItems ?: 0) &&
-                                !viewModel.isWaitingForRequest
+                        !viewModel.isWaitingForRequest
                     ) {
                         getList()
                     }
