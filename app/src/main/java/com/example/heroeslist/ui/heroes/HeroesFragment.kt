@@ -35,7 +35,8 @@ class HeroesFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val repository = HeroesRepository()
+        val api = HeroesApi()
+        val repository = HeroesRepository(api)
 
         factory = HeroesViewModelFactory(repository)
         viewModel = ViewModelProvider(this, factory).get(HeroesViewModel::class.java)
