@@ -12,7 +12,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.heroeslist.R
-import com.example.heroeslist.data.model.Hero
+import com.example.heroeslist.data.MediaType
+import com.example.heroeslist.data.model.hero.Hero
 import com.example.heroeslist.data.network.HeroesApi
 import com.example.heroeslist.data.repository.HeroesRepository
 import com.example.heroeslist.databinding.HeroDetailsFragmentBinding
@@ -96,26 +97,22 @@ class HeroDetailsFragment : Fragment() {
         val id = args.heroId
 
         heroDetailsBinding.comicsCardView.setOnClickListener {
-            val address = "$id/${requireContext().getString(R.string.comics)}"
-            val action = HeroDetailsFragmentDirections.requestListOfItems(address)
+            val action = HeroDetailsFragmentDirections.requestListOfItems(MediaType.Comics, id)
             findNavController().navigate(action)
         }
 
         heroDetailsBinding.seriesCardView.setOnClickListener {
-            val address = "$id/${requireContext().getString(R.string.series)}"
-            val action = HeroDetailsFragmentDirections.requestListOfItems(address)
+            val action = HeroDetailsFragmentDirections.requestListOfItems(MediaType.Series, id)
             findNavController().navigate(action)
         }
 
         heroDetailsBinding.eventsCardView.setOnClickListener {
-            val address = "$id/${requireContext().getString(R.string.events)}"
-            val action = HeroDetailsFragmentDirections.requestListOfItems(address)
+            val action = HeroDetailsFragmentDirections.requestListOfItems(MediaType.Events, id)
             findNavController().navigate(action)
         }
 
         heroDetailsBinding.storiesCardView.setOnClickListener {
-            val address = "$id/${requireContext().getString(R.string.stories)}"
-            val action = HeroDetailsFragmentDirections.requestListOfItems(address)
+            val action = HeroDetailsFragmentDirections.requestListOfItems(MediaType.Stories, id)
             findNavController().navigate(action)
         }
     }

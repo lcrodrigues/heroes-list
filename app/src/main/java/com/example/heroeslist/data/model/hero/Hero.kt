@@ -1,4 +1,4 @@
-package com.example.heroeslist.data.model
+package com.example.heroeslist.data.model.hero
 
 data class Hero(
     val comics: Comics,

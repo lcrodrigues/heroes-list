@@ -5,7 +5,7 @@
     <data>
         <variable
             name="hero"
-            type="com.example.heroeslist.data.model.Hero" />
+            type="com.example.heroeslist.data.model.hero.Hero" />
     </data>
 
     <LinearLayout

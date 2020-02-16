@@ -1,5 +1,6 @@
 package com.example.heroeslist.data.repository
 
+import com.example.heroeslist.data.MediaType
 import com.example.heroeslist.data.network.HeroesApi
 import com.example.heroeslist.data.network.SafeRequest
 
@@ -20,6 +21,16 @@ class HeroesRepository(
         apiRequest {
             heroesApi.getHeroDetails(
                 id = id,
-                ts = System.currentTimeMillis().toString())
+                ts = System.currentTimeMillis().toString()
+            )
+        }
+
+    suspend fun getHeroAppearances(mediaType: MediaType, id: String) =
+        apiRequest {
+            heroesApi.getHeroAppearances(
+                id = id,
+                address = mediaType.value,
+                ts = System.currentTimeMillis().toString()
+            )
         }
 }

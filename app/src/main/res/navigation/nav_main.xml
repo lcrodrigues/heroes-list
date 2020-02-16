@@ -50,7 +50,11 @@
             app:popUpToInclusive="true"/>
 
         <argument
-            android:name="address"
+            android:name="mediaType"
+            app:argType="com.example.heroeslist.data.MediaType" />
+
+        <argument
+            android:name="heroId"
             app:argType="string" />
     </fragment>
 </navigation>

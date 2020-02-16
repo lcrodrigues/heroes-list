@@ -3,7 +3,7 @@ package com.example.heroeslist.ui.details
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.heroeslist.data.model.Hero
+import com.example.heroeslist.data.model.hero.Hero
 import com.example.heroeslist.data.repository.HeroesRepository
 import com.example.heroeslist.util.Coroutines
 import kotlinx.coroutines.Job

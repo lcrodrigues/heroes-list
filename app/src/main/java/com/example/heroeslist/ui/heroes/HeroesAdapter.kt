@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.heroeslist.R
-import com.example.heroeslist.data.model.Hero
+import com.example.heroeslist.data.model.hero.Hero
 import com.example.heroeslist.databinding.HeroesListItemBinding
 
 class HeroesAdapter(

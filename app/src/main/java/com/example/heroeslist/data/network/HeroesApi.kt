@@ -1,7 +1,9 @@
 package com.example.heroeslist.data.network
 
 
-import com.example.heroeslist.data.model.ResultWrapper
+import android.location.Address
+import com.example.heroeslist.data.model.comic.ComicWrapper
+import com.example.heroeslist.data.model.hero.ResultWrapper
 import com.example.heroeslist.util.PUBLIC_KEY
 import com.example.heroeslist.util.BASE_URL
 import com.example.heroeslist.util.getMD5
@@ -11,7 +13,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
-import retrofit2.http.Url
 
 interface HeroesApi {
 
@@ -31,6 +32,15 @@ interface HeroesApi {
         @Query("ts") ts: String,
         @Query("hash") hash: String = getMD5(ts)
     ): Response<ResultWrapper>
+
+    @GET("characters/{characterId}/{address}")
+    suspend fun getHeroAppearances(
+        @Path("characterId") id: String,
+        @Path("address") address: String,
+        @Query("apikey") apiKey: String = PUBLIC_KEY,
+        @Query("ts") ts: String,
+        @Query("hash") hash: String = getMD5(ts)
+    ): Response<ComicWrapper>
 
     companion object {
         operator fun invoke(): HeroesApi {

@@ -1,8 +1,8 @@
-package com.example.heroeslist.data.model
+package com.example.heroeslist.data.model.comic
 
 data class Events(
     val available: String,
     val collectionURI: String,
-    val eventsItems: List<EventsItem>,
+    val items: List<ItemXX>,
     val returned: String
 )
