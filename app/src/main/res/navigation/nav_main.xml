@@ -11,13 +11,18 @@
         android:label="heroes_fragment"
         tools:layout="@layout/heroes_fragment" >
         <action
-            android:id="@+id/action_heroesFragment_to_heroDetailsFragment"
+            android:id="@+id/startHeroDetailsWithId"
             app:destination="@id/heroDetailsFragment" />
+
     </fragment>
 
     <fragment
         android:id="@+id/heroDetailsFragment"
         android:name="com.example.heroeslist.ui.details.HeroDetailsFragment"
         android:label="hero_details_fragment"
-        tools:layout="@layout/hero_details_fragment" />
+        tools:layout="@layout/hero_details_fragment" >
+        <argument
+            android:name="heroId"
+            app:argType="string" />
+    </fragment>
 </navigation>

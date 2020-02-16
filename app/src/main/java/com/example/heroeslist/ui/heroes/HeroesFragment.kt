@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.heroeslist.R
@@ -77,6 +78,7 @@ class HeroesFragment : Fragment() {
     }
 
     private fun onHeroClick(id: String) {
-        Toast.makeText(requireContext(), "Id do herói: ${id}.", Toast.LENGTH_SHORT).show()
+        val action = HeroesFragmentDirections.startHeroDetailsWithId(id)
+        findNavController().navigate(action)
     }
 }
