@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
+import androidx.navigation.fragment.findNavController
 
 import com.example.heroeslist.R
 
@@ -21,6 +23,13 @@ class HeroDetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().navigate(R.id.action_heroDetailsFragment_to_heroesFragment)
+            }
+        }
+
+
         return inflater.inflate(R.layout.hero_details_fragment, container, false)
     }
 
@@ -29,5 +38,6 @@ class HeroDetailsFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(HeroDetailsViewModel::class.java)
         // TODO: Use the ViewModel
     }
+
 
 }

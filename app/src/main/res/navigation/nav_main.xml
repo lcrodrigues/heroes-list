@@ -21,8 +21,15 @@
         android:name="com.example.heroeslist.ui.details.HeroDetailsFragment"
         android:label="hero_details_fragment"
         tools:layout="@layout/hero_details_fragment" >
+
         <argument
             android:name="heroId"
             app:argType="string" />
+
+        <action
+            android:id="@+id/action_heroDetailsFragment_to_heroesFragment"
+            app:destination="@id/heroesFragment"
+            app:popUpTo="@id/heroesFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
 </navigation>
