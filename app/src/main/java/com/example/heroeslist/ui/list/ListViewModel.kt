@@ -14,4 +14,7 @@ class ListViewModel(
         get() = _itemList
 
 
+    fun getList(address: String) {
+
+    }
 }

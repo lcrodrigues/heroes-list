@@ -61,6 +61,7 @@ class HeroDetailsFragment : Fragment() {
         })
 
         getDetails(id)
+        setupButtons()
     }
 
     private fun getDetails(id: String) {
@@ -89,5 +90,33 @@ class HeroDetailsFragment : Fragment() {
         heroDetailsBinding.seriesCardView.visibility = View.VISIBLE
         heroDetailsBinding.eventsCardView.visibility = View.VISIBLE
         heroDetailsBinding.storiesCardView.visibility = View.VISIBLE
+    }
+
+    private fun setupButtons() {
+        val id = args.heroId
+
+        heroDetailsBinding.comicsCardView.setOnClickListener {
+            val address = "$id/${requireContext().getString(R.string.comics)}"
+            val action = HeroDetailsFragmentDirections.requestListOfItems(address)
+            findNavController().navigate(action)
+        }
+
+        heroDetailsBinding.seriesCardView.setOnClickListener {
+            val address = "$id/${requireContext().getString(R.string.series)}"
+            val action = HeroDetailsFragmentDirections.requestListOfItems(address)
+            findNavController().navigate(action)
+        }
+
+        heroDetailsBinding.eventsCardView.setOnClickListener {
+            val address = "$id/${requireContext().getString(R.string.events)}"
+            val action = HeroDetailsFragmentDirections.requestListOfItems(address)
+            findNavController().navigate(action)
+        }
+
+        heroDetailsBinding.storiesCardView.setOnClickListener {
+            val address = "$id/${requireContext().getString(R.string.stories)}"
+            val action = HeroDetailsFragmentDirections.requestListOfItems(address)
+            findNavController().navigate(action)
+        }
     }
 }
