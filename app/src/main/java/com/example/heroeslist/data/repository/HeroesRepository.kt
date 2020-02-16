@@ -2,9 +2,9 @@ package com.example.heroeslist.data.repository
 
 import android.util.Log
 import com.example.heroeslist.data.model.Hero
+import com.example.heroeslist.data.model.ResultWrapper
 import com.example.heroeslist.data.network.HeroesApi
 import retrofit2.Callback
-import com.example.heroeslist.data.response.CharacterWrapperResponse
 import retrofit2.Call
 import retrofit2.Response
 
@@ -16,24 +16,19 @@ class HeroesRepository(
         val heroesList = mutableListOf<Hero>()
 
         heroesApi.getHeroes(ts = "${System.currentTimeMillis()}")
-            .enqueue(object : Callback<CharacterWrapperResponse> {
+            .enqueue(object : Callback<ResultWrapper> {
                 override fun onResponse(
-                    call: Call<CharacterWrapperResponse>,
-                    response: Response<CharacterWrapperResponse>
+                    call: Call<ResultWrapper>,
+                    response: Response<ResultWrapper>
                 ) {
                     if (response.isSuccessful) {
-                        response.body()?.let { characterWrapperResponse ->
-                            val characterList =
-                                characterWrapperResponse.characterDataResponse.characterResponse
+                        response.body()?.let { resultWrapper ->
 
-                            characterList.forEach { character ->
-                                heroesList.add(Hero(character.name))
-                            }
                         }
                     }
                 }
 
-                override fun onFailure(call: Call<CharacterWrapperResponse>, t: Throwable) {
+                override fun onFailure(call: Call<ResultWrapper>, t: Throwable) {
 
                 }
             })

@@ -1,8 +1,8 @@
 package com.example.heroeslist.data.network
 
 
+import com.example.heroeslist.data.model.ResultWrapper
 import retrofit2.Call
-import com.example.heroeslist.data.response.CharacterWrapperResponse
 import com.example.heroeslist.util.PUBLIC_KEY
 import com.example.heroeslist.util.BASE_URL
 import com.example.heroeslist.util.getMD5
@@ -18,7 +18,7 @@ interface HeroesApi {
         @Query("apikey") apiKey: String = PUBLIC_KEY,
         @Query("ts") ts: String,
         @Query("hash") hash: String = getMD5(ts)
-    ): Call<CharacterWrapperResponse>
+    ): Call<ResultWrapper>
 
     companion object {
         operator fun invoke(): HeroesApi {
