@@ -7,5 +7,6 @@ class HeroesRepository(
     private val heroesApi: HeroesApi
 ) : SafeRequest() {
 
-    suspend fun getHeroes() = apiRequest { heroesApi.getHeroes(ts = System.currentTimeMillis().toString()) }
+    suspend fun getHeroes() =
+        apiRequest { heroesApi.getHeroes(ts = System.currentTimeMillis().toString()) }
 }

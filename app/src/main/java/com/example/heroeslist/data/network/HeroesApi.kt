@@ -17,7 +17,8 @@ interface HeroesApi {
     suspend fun getHeroes(
         @Query("apikey") apiKey: String = PUBLIC_KEY,
         @Query("ts") ts: String,
-        @Query("hash") hash: String = getMD5(ts)
+        @Query("hash") hash: String = getMD5(ts),
+        @Query("limit") limit: Int = 40
     ): Response<ResultWrapper>
 
     companion object {
