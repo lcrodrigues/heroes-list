@@ -1,6 +1,5 @@
 package com.example.heroeslist.ui.heroes
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -19,8 +18,10 @@ class HeroesViewModel(
         get() = _heroes
 
     var totalItems: Int? = 0
+    var isWaitingForRequest: Boolean = false
 
     fun getHeroesList() {
+        isWaitingForRequest = true
         val limit = 50
         val offset = limit + (heroes.value?.count() ?: 0)
 

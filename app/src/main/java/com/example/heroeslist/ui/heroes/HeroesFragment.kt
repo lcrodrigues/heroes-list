@@ -1,6 +1,7 @@
 package com.example.heroeslist.ui.heroes
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -48,12 +49,16 @@ class HeroesFragment : Fragment() {
             }
 
             loadingProgressBar.visibility = View.GONE
+            viewModel.isWaitingForRequest = false
         })
 
-        getList()
+        if (viewModel.heroes.value.isNullOrEmpty()) {
+            getList()
+        }
     }
 
     private fun getList() {
+        Log.d("16022020", "call get list")
         loadingProgressBar.visibility = View.VISIBLE
         viewModel.getHeroesList()
     }
@@ -69,7 +74,10 @@ class HeroesFragment : Fragment() {
                     super.onScrollStateChanged(recyclerView, newState)
 
                     val count = viewModel.heroes.value?.count() ?: 0
-                    if(!canScrollVertically(1) && count < (viewModel.totalItems ?: 0)) {
+                    if (!canScrollVertically(1) &&
+                        count < (viewModel.totalItems ?: 0) &&
+                                !viewModel.isWaitingForRequest
+                    ) {
                         getList()
                     }
                 }
