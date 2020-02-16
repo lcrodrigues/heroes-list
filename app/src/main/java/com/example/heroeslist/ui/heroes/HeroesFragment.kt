@@ -26,7 +26,6 @@ class HeroesFragment : Fragment() {
     ): View? {
 
         return inflater.inflate(R.layout.heroes_fragment, container, false)
-
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
