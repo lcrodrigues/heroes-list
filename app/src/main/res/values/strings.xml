@@ -1,5 +1,9 @@
 <resources>
-    <string name="app_name">HeroesList</string>
+    <string name="app_name">Marvel Super Heroes</string>
     <string name="description">Description</string>
     <string name="no_description_available">No description available for this character.</string>
+    <string name="comics">Comics</string>
+    <string name="series">Series</string>
+    <string name="events">Events</string>
+    <string name="stories">Stories</string>
 </resources>

@@ -2,6 +2,8 @@ package com.example.heroeslist.ui.heroes
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.FragmentManager
+import androidx.navigation.findNavController
 import com.example.heroeslist.R
 import kotlinx.android.synthetic.main.activity_heroes.*
 
@@ -13,6 +15,5 @@ class HeroesActivity : AppCompatActivity() {
 
         appToolbar.title = resources.getString(R.string.app_name)
         setSupportActionBar(appToolbar)
-
     }
 }

@@ -37,13 +37,14 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"
+            android:elevation="1dp"
+            android:backgroundTint="@color/colorCellBackground"
             app:cardCornerRadius="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/heroName">
 
             <TextView
-                android:textColor="@android:color/white"
                 android:id="@+id/heroDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -56,6 +57,7 @@
             android:id="@+id/comicsCardView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorComicsCardBackground"
             app:cardCornerRadius="5dp"
             android:layout_marginTop="32dp"
             app:layout_constraintEnd_toEndOf="@+id/descriptionCardView"
@@ -63,7 +65,6 @@
             app:layout_constraintTop_toBottomOf="@+id/descriptionCardView">
 
             <TextView
-                android:textColor="@android:color/white"
                 android:id="@+id/comicsText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -78,6 +79,7 @@
             android:id="@+id/storiesCardView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorStoriesCardBackground"
             android:layout_marginTop="16dp"
             app:cardCornerRadius="5dp"
             app:layout_constraintEnd_toEndOf="@+id/comicsCardView"
@@ -85,7 +87,6 @@
             app:layout_constraintTop_toBottomOf="@+id/comicsCardView">
 
             <TextView
-                android:textColor="@android:color/white"
                 android:id="@+id/storiesText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -100,6 +101,7 @@
             android:id="@+id/eventsCardView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorEventsCardBackground"
             android:layout_marginTop="16dp"
             app:cardCornerRadius="5dp"
             app:layout_constraintEnd_toEndOf="@+id/storiesCardView"
@@ -107,7 +109,6 @@
             app:layout_constraintTop_toBottomOf="@+id/storiesCardView">
 
             <TextView
-                android:textColor="@android:color/white"
                 android:id="@+id/eventsText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -123,13 +124,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:backgroundTint="@color/colorSeriesCardBackground"
             app:cardCornerRadius="5dp"
             app:layout_constraintEnd_toEndOf="@+id/eventsCardView"
             app:layout_constraintStart_toStartOf="@+id/eventsCardView"
             app:layout_constraintTop_toBottomOf="@+id/eventsCardView">
 
             <TextView
-                android:textColor="@android:color/white"
                 android:id="@+id/seriesText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -139,6 +140,5 @@
                 android:text="@string/series" />
 
         </androidx.cardview.widget.CardView>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

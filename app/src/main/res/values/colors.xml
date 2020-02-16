@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
-    <color name="colorText">#000000</color>
+    <color name="colorPrimary">#C72523</color>
+    <color name="colorPrimaryDark">#951E22</color>
+    <color name="colorAccent">#4D8AB5</color>
+    <color name="colorCellBackground">#B9BEBA</color>
+    <color name="colorText">#1E2639</color>
+    <color name="colorComicsCardBackground">#fce611</color>
+    <color name="colorStoriesCardBackground">#eb1d28</color>
+    <color name="colorEventsCardBackground">#03ade9</color>
+    <color name="colorSeriesCardBackground">#fbc8b5</color>
 </resources>
