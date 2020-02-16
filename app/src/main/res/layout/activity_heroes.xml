@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".ui.heroes.HeroesActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/appToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment"
@@ -16,7 +25,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appToolbar"
         app:navGraph="@navigation/nav_main" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
