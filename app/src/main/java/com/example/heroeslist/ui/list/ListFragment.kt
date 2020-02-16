@@ -1,21 +1,20 @@
 package com.example.heroeslist.ui.list
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 
 import com.example.heroeslist.R
+import com.example.heroeslist.data.network.HeroesApi
+import com.example.heroeslist.data.repository.HeroesRepository
 
 class ListFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = ListFragment()
-    }
-
     private lateinit var viewModel: ListViewModel
+    private lateinit var factory: ListViewModelFactory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,8 +25,12 @@ class ListFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(ListViewModel::class.java)
-        // TODO: Use the ViewModel
+
+        val api = HeroesApi()
+        val repository = HeroesRepository(api)
+        factory = ListViewModelFactory(repository)
+
+        viewModel = ViewModelProvider(this, factory).get(ListViewModel::class.java)
     }
 
 }
