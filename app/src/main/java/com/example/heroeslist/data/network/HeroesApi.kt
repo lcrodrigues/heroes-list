@@ -2,10 +2,10 @@ package com.example.heroeslist.data.network
 
 
 import com.example.heroeslist.data.model.ResultWrapper
-import retrofit2.Call
 import com.example.heroeslist.util.PUBLIC_KEY
 import com.example.heroeslist.util.BASE_URL
 import com.example.heroeslist.util.getMD5
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
@@ -18,7 +18,7 @@ interface HeroesApi {
         @Query("apikey") apiKey: String = PUBLIC_KEY,
         @Query("ts") ts: String,
         @Query("hash") hash: String = getMD5(ts)
-    ): Call<ResultWrapper>
+    ): Response<ResultWrapper>
 
     companion object {
         operator fun invoke(): HeroesApi {
