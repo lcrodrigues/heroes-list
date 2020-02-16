@@ -1,10 +1,12 @@
 package com.example.heroeslist.ui.heroes
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.heroeslist.data.model.Hero
 import com.example.heroeslist.data.repository.HeroesRepository
+import com.example.heroeslist.util.Coroutines
 import kotlinx.coroutines.*
 
 class HeroesViewModel(
@@ -17,13 +19,15 @@ class HeroesViewModel(
         get() = _heroes
 
     fun getHeroesList() {
-        job = CoroutineScope(Dispatchers.Main).launch {
-            val data = CoroutineScope(Dispatchers.IO).async rt@{
-                return@rt repository.getHeroes()
-            }.await()
 
-            _heroes.value = data
-        }
+        job = Coroutines.ioThenMain(
+            { repository.getHeroes() },
+            { wrapper ->
+                val list = wrapper?.data?.results
+
+                _heroes.value = list
+            }
+        )
 
     }
 
