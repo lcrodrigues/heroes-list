@@ -12,15 +12,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.heroeslist.R
+import com.example.heroeslist.data.model.Hero
 import com.example.heroeslist.data.network.HeroesApi
 import com.example.heroeslist.data.repository.HeroesRepository
 import com.example.heroeslist.databinding.HeroDetailsFragmentBinding
 
 class HeroDetailsFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = HeroDetailsFragment()
-    }
 
     private lateinit var viewModel: HeroDetailsViewModel
     private lateinit var factory: HeroDetailsViewModelFactory
@@ -60,15 +57,37 @@ class HeroDetailsFragment : Fragment() {
         viewModel = ViewModelProvider(this, factory).get(HeroDetailsViewModel::class.java)
 
         viewModel.hero.observe(viewLifecycleOwner, Observer {
-            heroDetailsBinding.hero = it
-
-            heroDetailsBinding.hero?.let { hero ->
-                if (hero.description.isEmpty()) {
-                    hero.description = resources.getString(R.string.no_description_available)
-                }
-            }
+            setHeroData(it)
         })
 
+        getDetails(id)
+    }
+
+    private fun getDetails(id: String) {
+        heroDetailsBinding.loadingProgressBar.visibility = View.VISIBLE
+        heroDetailsBinding.descriptionCardView.visibility = View.GONE
+        heroDetailsBinding.comicsCardView.visibility = View.GONE
+        heroDetailsBinding.seriesCardView.visibility = View.GONE
+        heroDetailsBinding.eventsCardView.visibility = View.GONE
+        heroDetailsBinding.storiesCardView.visibility = View.GONE
+
         viewModel.getHeroDetails(id)
+    }
+
+    private fun setHeroData(hero: Hero) {
+        heroDetailsBinding.hero = hero
+
+        heroDetailsBinding.hero?.let {
+            if (it.description.isEmpty()) {
+                it.description = resources.getString(R.string.no_description_available)
+            }
+        }
+
+        heroDetailsBinding.loadingProgressBar.visibility = View.GONE
+        heroDetailsBinding.descriptionCardView.visibility = View.VISIBLE
+        heroDetailsBinding.comicsCardView.visibility = View.VISIBLE
+        heroDetailsBinding.seriesCardView.visibility = View.VISIBLE
+        heroDetailsBinding.eventsCardView.visibility = View.VISIBLE
+        heroDetailsBinding.storiesCardView.visibility = View.VISIBLE
     }
 }
