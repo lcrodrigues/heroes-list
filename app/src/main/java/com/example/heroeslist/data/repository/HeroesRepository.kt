@@ -15,4 +15,11 @@ class HeroesRepository(
                 offset = offset
             )
         }
+
+    suspend fun getHeroDetails(id: String) =
+        apiRequest {
+            heroesApi.getHeroDetails(
+                id = id,
+                ts = System.currentTimeMillis().toString())
+        }
 }

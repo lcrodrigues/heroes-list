@@ -1,7 +1,6 @@
 package com.example.heroeslist.ui.heroes
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.heroeslist.R
 import com.example.heroeslist.data.network.HeroesApi
 import com.example.heroeslist.data.repository.HeroesRepository
+import com.example.heroeslist.util.BASE_URL
 import kotlinx.android.synthetic.main.heroes_fragment.*
 
 

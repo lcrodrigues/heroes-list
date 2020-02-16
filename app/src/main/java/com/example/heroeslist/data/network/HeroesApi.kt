@@ -9,7 +9,9 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
+import retrofit2.http.Url
 
 interface HeroesApi {
 
@@ -20,6 +22,14 @@ interface HeroesApi {
         @Query("hash") hash: String = getMD5(ts),
         @Query("limit") limit: Int,
         @Query("offset") offset: Int
+    ): Response<ResultWrapper>
+
+    @GET("characters/{characterId}")
+    suspend fun getHeroDetails(
+        @Path("characterId") id: String,
+        @Query("apikey") apiKey: String = PUBLIC_KEY,
+        @Query("ts") ts: String,
+        @Query("hash") hash: String = getMD5(ts)
     ): Response<ResultWrapper>
 
     companion object {
