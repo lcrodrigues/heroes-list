@@ -47,8 +47,15 @@ class HeroesFragment : Fragment() {
                 layoutManager = LinearLayoutManager(requireContext())
                 adapter = HeroesAdapter(heroes)
             }
+
+            loadingProgressBar.visibility = View.GONE
         })
 
+        getList()
+    }
+
+    private fun getList() {
+        loadingProgressBar.visibility = View.VISIBLE
         viewModel.getHeroesList()
     }
 
