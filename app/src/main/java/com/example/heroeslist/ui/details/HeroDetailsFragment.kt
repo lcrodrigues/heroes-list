@@ -82,6 +82,7 @@ class HeroDetailsFragment : Fragment() {
         heroDetailsBinding.seriesCardView.visibility = View.GONE
         heroDetailsBinding.eventsCardView.visibility = View.GONE
         heroDetailsBinding.storiesCardView.visibility = View.GONE
+        heroDetailsBinding.attributionText.visibility = View.GONE
 
         viewModel.getHeroDetails(id)
     }
@@ -101,6 +102,7 @@ class HeroDetailsFragment : Fragment() {
         heroDetailsBinding.seriesCardView.visibility = View.VISIBLE
         heroDetailsBinding.eventsCardView.visibility = View.VISIBLE
         heroDetailsBinding.storiesCardView.visibility = View.VISIBLE
+        heroDetailsBinding.attributionText.visibility = View.VISIBLE
     }
 
     private fun setupButtons() {
