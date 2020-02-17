@@ -89,7 +89,7 @@ class HeroDetailsFragment : Fragment() {
 
     private fun setReceivedData(hero: Hero) {
         heroDetailsBinding.hero = hero
-
+        heroDetailsBinding.coverImage
         heroDetailsBinding.hero?.let {
             if (it.description.isEmpty()) {
                 it.description = resources.getString(R.string.no_description_available)

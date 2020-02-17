@@ -12,4 +12,6 @@ data class Hero(
     val stories: Stories,
     val thumbnail: Thumbnail,
     val urls: List<Url>
-)
+) {
+    fun getUrl() : String = "${thumbnail.path}.${thumbnail.extension}"
+}
