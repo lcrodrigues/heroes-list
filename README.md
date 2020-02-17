@@ -8,4 +8,5 @@ https://www.schemecolor.com/avengers-age-of-ultron-theme-colors.php e https://ww
 
 Pendências:
 - Tratamento para erro socket timeout;
+- Tratamento para erro na API request;
 - Testes unitários e de aceitação.
