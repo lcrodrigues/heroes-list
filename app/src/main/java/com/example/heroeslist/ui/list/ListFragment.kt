@@ -42,20 +42,31 @@ class ListFragment : Fragment() {
         (activity as AppCompatActivity).title = requireContext().resources.getString(R.string.detail_title_template, args.mediaType.value, args.heroName)
 
         viewModel.itemList.observe(viewLifecycleOwner, Observer {
-            listFragmentBinding.itemRecyclerView.apply {
-                layoutManager = LinearLayoutManager(requireContext())
-                setHasFixedSize(true)
-                adapter = ListAdapter(it)
-            }
-
-            listFragmentBinding.loadingProgressBar.visibility = View.GONE
+            setReceivedData(it)
         })
 
+        setupRecyclerView()
         getList()
     }
 
     private fun getList() {
         listFragmentBinding.loadingProgressBar.visibility = View.VISIBLE
         viewModel.getList(args.mediaType, args.heroId)
+    }
+
+    private fun setupRecyclerView() {
+        listFragmentBinding.itemRecyclerView.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            setHasFixedSize(true)
+            adapter = ListAdapter(listOf())
+        }
+    }
+
+    private fun setReceivedData(list: MutableList<String>) {
+        listFragmentBinding.itemRecyclerView.apply {
+            adapter = ListAdapter(list)
+        }
+
+        listFragmentBinding.loadingProgressBar.visibility = View.GONE
     }
 }

@@ -61,7 +61,7 @@ class HeroDetailsFragment : Fragment() {
         viewModel = ViewModelProvider(this, factory).get(HeroDetailsViewModel::class.java)
 
         viewModel.hero.observe(viewLifecycleOwner, Observer {
-            setHeroData(it)
+            setReceivedData(it)
         })
 
         getDetails(id)
@@ -79,7 +79,7 @@ class HeroDetailsFragment : Fragment() {
         viewModel.getHeroDetails(id)
     }
 
-    private fun setHeroData(hero: Hero) {
+    private fun setReceivedData(hero: Hero) {
         heroDetailsBinding.hero = hero
 
         heroDetailsBinding.hero?.let {

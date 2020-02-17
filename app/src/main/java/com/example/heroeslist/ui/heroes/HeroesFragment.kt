@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.heroeslist.R
+import com.example.heroeslist.data.model.hero.Hero
 import com.example.heroeslist.data.network.HeroesApi
 import com.example.heroeslist.data.repository.HeroesRepository
 import kotlinx.android.synthetic.main.heroes_fragment.*
@@ -41,13 +42,8 @@ class HeroesFragment : Fragment() {
         viewModel = ViewModelProvider(this, factory).get(HeroesViewModel::class.java)
         setupRecyclerView()
 
-        viewModel.heroes.observe(viewLifecycleOwner, Observer { heroes ->
-            recyclerViewHeroes.apply {
-                (adapter as HeroesAdapter).updateRecyclerView(heroes)
-            }
-
-            loadingProgressBar.visibility = View.GONE
-            viewModel.isWaitingForRequest = false
+        viewModel.heroes.observe(viewLifecycleOwner, Observer {
+            setReceivedData(it)
         })
 
         if (viewModel.heroes.value.isNullOrEmpty()) {
@@ -80,6 +76,15 @@ class HeroesFragment : Fragment() {
                 }
             })
         }
+    }
+
+    private fun setReceivedData(list: MutableList<Hero>) {
+        recyclerViewHeroes.apply {
+            (adapter as HeroesAdapter).updateRecyclerView(list)
+        }
+
+        loadingProgressBar.visibility = View.GONE
+        viewModel.isWaitingForRequest = false
     }
 
     private fun onHeroClick(id: String, name: String) {
