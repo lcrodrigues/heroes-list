@@ -13,5 +13,6 @@ data class Hero(
     val thumbnail: Thumbnail,
     val urls: List<Url>
 ) {
-    fun getUrl() : String = "${thumbnail.path}.${thumbnail.extension}"
+    fun getUrl() : String = "${getPath()}.${thumbnail.extension}"
+    private fun getPath() : String = thumbnail.path.replace("http", "https")
 }
