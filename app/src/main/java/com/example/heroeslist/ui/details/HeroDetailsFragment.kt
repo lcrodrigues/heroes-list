@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -36,6 +37,7 @@ class HeroDetailsFragment : Fragment() {
         }
 
         requireActivity().onBackPressedDispatcher.addCallback(this, callback)
+        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         heroDetailsBinding = DataBindingUtil.inflate(
             LayoutInflater.from(requireContext()),
