@@ -4,151 +4,159 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="hero"
             type="com.example.heroeslist.data.model.hero.Hero" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.details.HeroDetailsFragment">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/heroName"
-            android:layout_width="0dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="64dp"
-            android:layout_marginEnd="32dp"
-            android:gravity="center"
-            android:text="@{hero.name}"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Spider-Man" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/descriptionCardView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="16dp"
-            app:cardCornerRadius="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/heroName">
+            tools:context=".ui.details.HeroDetailsFragment">
 
             <TextView
-                android:textColor="@android:color/white"
-                android:id="@+id/heroDescription"
+                android:id="@+id/heroName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:gravity="center"
+                android:text="@{hero.name}"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Spider-Man" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/descriptionCardView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                app:cardCornerRadius="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/heroName">
+
+                <TextView
+                    android:id="@+id/heroDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:text="@{hero.description}"
+                    android:textColor="@android:color/white"
+                    tools:text="Após ser picado por uma aranha, o jovem Peter Parker ganha superpoderes e precisa aprender a lidar com as consequências geradas por isso. Tobey Maguire foi o melhor ator ao interpretá-lo e quanto a isso não há discussão." />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/comicsCardView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                app:cardCornerRadius="5dp"
+                app:layout_constraintEnd_toEndOf="@+id/descriptionCardView"
+                app:layout_constraintStart_toStartOf="@+id/descriptionCardView"
+                app:layout_constraintTop_toBottomOf="@+id/descriptionCardView">
+
+                <TextView
+                    android:id="@+id/comicsText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:drawableEnd="@drawable/ic_arrow_forward_24dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/comics"
+                    android:textColor="@android:color/white" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/storiesCardView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardCornerRadius="5dp"
+                app:layout_constraintEnd_toEndOf="@+id/comicsCardView"
+                app:layout_constraintStart_toStartOf="@+id/comicsCardView"
+                app:layout_constraintTop_toBottomOf="@+id/comicsCardView">
+
+                <TextView
+                    android:id="@+id/storiesText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:drawableEnd="@drawable/ic_arrow_forward_24dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/stories"
+                    android:textColor="@android:color/white" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/eventsCardView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardCornerRadius="5dp"
+                app:layout_constraintEnd_toEndOf="@+id/storiesCardView"
+                app:layout_constraintStart_toStartOf="@+id/storiesCardView"
+                app:layout_constraintTop_toBottomOf="@+id/storiesCardView">
+
+                <TextView
+                    android:id="@+id/eventsText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:drawableEnd="@drawable/ic_arrow_forward_24dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/events"
+                    android:textColor="@android:color/white" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/seriesCardView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/eventsCardView"
+                app:layout_constraintStart_toStartOf="@+id/eventsCardView"
+                app:layout_constraintTop_toBottomOf="@+id/eventsCardView">
+
+                <TextView
+                    android:id="@+id/seriesText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:drawableEnd="@drawable/ic_arrow_forward_24dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/series"
+                    android:textColor="@android:color/white" />
+
+            </androidx.cardview.widget.CardView>
+
+            <ProgressBar
+                android:id="@+id/loadingProgressBar"
+                style="?android:attr/progressBarStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:text="@{hero.description}"
-                tools:text="Após ser picado por uma aranha, o jovem Peter Parker ganha superpoderes e precisa aprender a lidar com as consequências geradas por isso. Tobey Maguire foi o melhor ator ao interpretá-lo e quanto a isso não há discussão." />
-        </androidx.cardview.widget.CardView>
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/comicsCardView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="5dp"
-            android:layout_marginTop="32dp"
-            app:layout_constraintEnd_toEndOf="@+id/descriptionCardView"
-            app:layout_constraintStart_toStartOf="@+id/descriptionCardView"
-            app:layout_constraintTop_toBottomOf="@+id/descriptionCardView">
-
-            <TextView
-                android:textColor="@android:color/white"
-                android:id="@+id/comicsText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:drawableEnd="@drawable/ic_arrow_forward_24dp"
-                android:gravity="center_vertical"
-                android:text="@string/comics" />
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/storiesCardView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:cardCornerRadius="5dp"
-            app:layout_constraintEnd_toEndOf="@+id/comicsCardView"
-            app:layout_constraintStart_toStartOf="@+id/comicsCardView"
-            app:layout_constraintTop_toBottomOf="@+id/comicsCardView">
-
-            <TextView
-                android:textColor="@android:color/white"
-                android:id="@+id/storiesText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:drawableEnd="@drawable/ic_arrow_forward_24dp"
-                android:gravity="center_vertical"
-                android:text="@string/stories" />
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/eventsCardView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:cardCornerRadius="5dp"
-            app:layout_constraintEnd_toEndOf="@+id/storiesCardView"
-            app:layout_constraintStart_toStartOf="@+id/storiesCardView"
-            app:layout_constraintTop_toBottomOf="@+id/storiesCardView">
-
-            <TextView
-                android:textColor="@android:color/white"
-                android:id="@+id/eventsText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:drawableEnd="@drawable/ic_arrow_forward_24dp"
-                android:gravity="center_vertical"
-                android:text="@string/events" />
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/seriesCardView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:cardCornerRadius="5dp"
-            app:layout_constraintEnd_toEndOf="@+id/eventsCardView"
-            app:layout_constraintStart_toStartOf="@+id/eventsCardView"
-            app:layout_constraintTop_toBottomOf="@+id/eventsCardView">
-
-            <TextView
-                android:textColor="@android:color/white"
-                android:id="@+id/seriesText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:drawableEnd="@drawable/ic_arrow_forward_24dp"
-                android:gravity="center_vertical"
-                android:text="@string/series" />
-
-        </androidx.cardview.widget.CardView>
-
-        <ProgressBar
-            android:id="@+id/loadingProgressBar"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>
