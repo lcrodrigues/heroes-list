@@ -17,21 +17,17 @@ class HeroesViewModel(
     val heroes: LiveData<MutableList<Hero>>
         get() = _heroes
 
+    private val limit = 50
+    private var offset = 0
     var totalItems: Int? = 0
     var isWaitingForRequest: Boolean = false
 
     fun getHeroesList() {
         isWaitingForRequest = true
-        val limit = 50
-        val offset = limit + (heroes.value?.count() ?: 0)
 
         job = Coroutines.ioThenMain(
             { repository.getHeroes(limit, offset) },
             { wrapper ->
-                if(totalItems == 0) {
-                    totalItems = wrapper?.data?.total?.toIntOrNull()
-                }
-
                 val list = _heroes.value ?: mutableListOf()
                 val listFromApi = wrapper?.data?.results
 
@@ -42,6 +38,12 @@ class HeroesViewModel(
                 if(!list.isNullOrEmpty()) {
                     _heroes.value = list
                 }
+
+                if(totalItems == 0) {
+                    totalItems = wrapper?.data?.total?.toIntOrNull()
+                }
+
+                offset += (_heroes.value?.count() ?: 0)
             }
         )
 
