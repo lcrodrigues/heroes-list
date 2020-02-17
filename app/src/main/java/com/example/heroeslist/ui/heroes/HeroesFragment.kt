@@ -1,12 +1,12 @@
 package com.example.heroeslist.ui.heroes
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -16,22 +16,22 @@ import com.example.heroeslist.R
 import com.example.heroeslist.data.model.hero.Hero
 import com.example.heroeslist.data.network.HeroesApi
 import com.example.heroeslist.data.repository.HeroesRepository
+import com.example.heroeslist.databinding.HeroesFragmentBinding
 import com.example.heroeslist.util.isConnected
 import com.example.heroeslist.util.showSnackbarConnection
-import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.heroes_fragment.*
-
 
 class HeroesFragment : Fragment() {
     private lateinit var viewModel: HeroesViewModel
     private lateinit var factory: HeroesViewModelFactory
+    private lateinit var heroesFragmentBinding: HeroesFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        return inflater.inflate(R.layout.heroes_fragment, container, false)
+        heroesFragmentBinding =
+            DataBindingUtil.inflate(inflater, R.layout.heroes_fragment, container, false)
+        return heroesFragmentBinding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -50,7 +50,7 @@ class HeroesFragment : Fragment() {
             setReceivedData(it)
         })
 
-        if(isConnected()) {
+        if (isConnected()) {
             if (viewModel.heroes.value.isNullOrEmpty()) {
                 getList()
             }
@@ -60,12 +60,12 @@ class HeroesFragment : Fragment() {
     }
 
     private fun getList() {
-        loadingProgressBar.visibility = View.VISIBLE
+        heroesFragmentBinding.loadingProgressBar.visibility = View.VISIBLE
         viewModel.getHeroesList()
     }
 
     private fun setupRecyclerView() {
-        recyclerViewHeroes.apply {
+        heroesFragmentBinding.recyclerViewHeroes.apply {
             adapter = HeroesAdapter(mutableListOf(), this@HeroesFragment::onHeroClick)
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(requireContext())
@@ -87,11 +87,11 @@ class HeroesFragment : Fragment() {
     }
 
     private fun setReceivedData(list: MutableList<Hero>) {
-        recyclerViewHeroes.apply {
+        heroesFragmentBinding.recyclerViewHeroes.apply {
             (adapter as HeroesAdapter).updateRecyclerView(list)
         }
 
-        loadingProgressBar.visibility = View.GONE
+        heroesFragmentBinding.loadingProgressBar.visibility = View.GONE
         viewModel.isWaitingForRequest = false
     }
 
