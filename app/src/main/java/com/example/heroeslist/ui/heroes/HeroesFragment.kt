@@ -82,8 +82,8 @@ class HeroesFragment : Fragment() {
         }
     }
 
-    private fun onHeroClick(id: String) {
-        val action = HeroesFragmentDirections.startHeroDetailsWithId(id)
+    private fun onHeroClick(id: String, name: String) {
+        val action = HeroesFragmentDirections.startHeroDetailsWithId(id, name)
         findNavController().navigate(action)
     }
 }

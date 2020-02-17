@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -38,6 +39,7 @@ class ListFragment : Fragment() {
 
         factory = ListViewModelFactory(repository)
         viewModel = ViewModelProvider(this, factory).get(ListViewModel::class.java)
+        (activity as AppCompatActivity).title = requireContext().resources.getString(R.string.detail_title_template, args.mediaType.value, args.heroName)
 
         viewModel.itemList.observe(viewLifecycleOwner, Observer {
             listFragmentBinding.itemRecyclerView.apply {

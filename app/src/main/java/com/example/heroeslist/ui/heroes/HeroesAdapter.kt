@@ -10,7 +10,7 @@ import com.example.heroeslist.databinding.HeroesListItemBinding
 
 class HeroesAdapter(
     val heroesList: MutableList<Hero>,
-    private val callback: (String) -> Unit
+    private val callback: (String, String) -> Unit
 ) : RecyclerView.Adapter<HeroesAdapter.HeroesViewHolder>() {
 
     inner class HeroesViewHolder(
@@ -29,7 +29,9 @@ class HeroesAdapter(
 
         heroesViewHolder.itemView.setOnClickListener {
             val id = heroesList[heroesViewHolder.adapterPosition].id
-            callback(id)
+            val name = heroesList[heroesViewHolder.adapterPosition].name
+
+            callback(id, name)
         }
 
         return heroesViewHolder

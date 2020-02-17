@@ -38,6 +38,7 @@ class HeroDetailsFragment : Fragment() {
 
         requireActivity().onBackPressedDispatcher.addCallback(this, callback)
         (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        (activity as AppCompatActivity).title = args.heroName 
 
         heroDetailsBinding = DataBindingUtil.inflate(
             LayoutInflater.from(requireContext()),
@@ -97,24 +98,25 @@ class HeroDetailsFragment : Fragment() {
 
     private fun setupButtons() {
         val id = args.heroId
+        val name = args.heroName
 
         heroDetailsBinding.comicsCardView.setOnClickListener {
-            val action = HeroDetailsFragmentDirections.requestListOfItems(MediaType.Comics, id)
+            val action = HeroDetailsFragmentDirections.requestListOfItems(MediaType.Comics, id, name)
             findNavController().navigate(action)
         }
 
         heroDetailsBinding.seriesCardView.setOnClickListener {
-            val action = HeroDetailsFragmentDirections.requestListOfItems(MediaType.Series, id)
+            val action = HeroDetailsFragmentDirections.requestListOfItems(MediaType.Series, id, name)
             findNavController().navigate(action)
         }
 
         heroDetailsBinding.eventsCardView.setOnClickListener {
-            val action = HeroDetailsFragmentDirections.requestListOfItems(MediaType.Events, id)
+            val action = HeroDetailsFragmentDirections.requestListOfItems(MediaType.Events, id, name)
             findNavController().navigate(action)
         }
 
         heroDetailsBinding.storiesCardView.setOnClickListener {
-            val action = HeroDetailsFragmentDirections.requestListOfItems(MediaType.Stories, id)
+            val action = HeroDetailsFragmentDirections.requestListOfItems(MediaType.Stories, id, name)
             findNavController().navigate(action)
         }
     }

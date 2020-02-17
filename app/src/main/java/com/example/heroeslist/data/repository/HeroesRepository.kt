@@ -3,6 +3,7 @@ package com.example.heroeslist.data.repository
 import com.example.heroeslist.data.MediaType
 import com.example.heroeslist.data.network.HeroesApi
 import com.example.heroeslist.data.network.SafeRequest
+import java.util.*
 
 class HeroesRepository(
     private val heroesApi: HeroesApi
@@ -29,7 +30,7 @@ class HeroesRepository(
         apiRequest {
             heroesApi.getHeroComics(
                 id = id,
-                address = mediaType.value,
+                address = mediaType.value.toLowerCase(Locale.getDefault()),
                 ts = System.currentTimeMillis().toString()
             )
         }
@@ -38,7 +39,7 @@ class HeroesRepository(
         apiRequest {
             heroesApi.getHeroStories(
                 id = id,
-                address = mediaType.value,
+                address = mediaType.value.toLowerCase(Locale.getDefault()),
                 ts = System.currentTimeMillis().toString()
             )
         }
@@ -47,7 +48,7 @@ class HeroesRepository(
         apiRequest {
             heroesApi.getHeroEvents(
                 id = id,
-                address = mediaType.value,
+                address = mediaType.value.toLowerCase(Locale.getDefault()),
                 ts = System.currentTimeMillis().toString()
             )
         }
@@ -56,7 +57,7 @@ class HeroesRepository(
         apiRequest {
             heroesApi.getHeroSeries(
                 id = id,
-                address = mediaType.value,
+                address = mediaType.value.toLowerCase(Locale.getDefault()),
                 ts = System.currentTimeMillis().toString()
             )
         }

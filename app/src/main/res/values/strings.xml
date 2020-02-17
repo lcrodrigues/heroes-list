@@ -6,4 +6,6 @@
     <string name="series">Series</string>
     <string name="events">Events</string>
     <string name="stories">Stories</string>
+    <string name="detail_title_template">%1$s for %2$s</string>
+
 </resources>

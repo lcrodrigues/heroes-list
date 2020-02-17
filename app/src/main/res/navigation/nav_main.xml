@@ -26,6 +26,10 @@
             android:name="heroId"
             app:argType="string" />
 
+        <argument
+            android:name="heroName"
+            app:argType="string" />
+
         <action
             android:id="@+id/action_heroDetailsFragment_to_heroesFragment"
             app:destination="@id/heroesFragment"
@@ -55,6 +59,10 @@
 
         <argument
             android:name="heroId"
+            app:argType="string" />
+
+        <argument
+            android:name="heroName"
             app:argType="string" />
     </fragment>
 </navigation>

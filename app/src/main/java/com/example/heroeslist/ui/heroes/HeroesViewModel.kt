@@ -43,7 +43,7 @@ class HeroesViewModel(
                     totalItems = wrapper?.data?.total?.toIntOrNull()
                 }
 
-                offset += (_heroes.value?.count() ?: 0)
+                offset = (_heroes.value?.count() ?: 0)
             }
         )
 
