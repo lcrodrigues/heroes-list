@@ -55,7 +55,7 @@
 
         <argument
             android:name="mediaType"
-            app:argType="com.example.heroeslist.data.MediaType" />
+            app:argType="com.example.heroeslist.data.types.MediaType" />
 
         <argument
             android:name="heroId"

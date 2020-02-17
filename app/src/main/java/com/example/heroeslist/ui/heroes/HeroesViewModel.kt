@@ -20,7 +20,7 @@ class HeroesViewModel(
     private val limit = 50
     private var offset = 0
     var totalItems: Int? = 0
-    var isWaitingForRequest: Boolean = false
+    var isWaitingForRequest = false
 
     fun getHeroesList() {
         isWaitingForRequest = true

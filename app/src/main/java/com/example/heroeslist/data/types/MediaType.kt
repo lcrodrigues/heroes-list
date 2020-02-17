@@ -1,4 +1,4 @@
-package com.example.heroeslist.data
+package com.example.heroeslist.data.types
 
 enum class MediaType(val value: String) {
     Comics("Comics"),

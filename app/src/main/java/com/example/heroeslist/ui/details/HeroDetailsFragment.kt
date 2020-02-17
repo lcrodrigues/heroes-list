@@ -13,7 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.heroeslist.R
-import com.example.heroeslist.data.MediaType
+import com.example.heroeslist.data.types.MediaType
 import com.example.heroeslist.data.model.hero.Hero
 import com.example.heroeslist.data.network.HeroesApi
 import com.example.heroeslist.data.repository.HeroesRepository

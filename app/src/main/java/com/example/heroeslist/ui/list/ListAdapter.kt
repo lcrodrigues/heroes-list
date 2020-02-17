@@ -8,7 +8,7 @@ import com.example.heroeslist.R
 import com.example.heroeslist.databinding.ListItemBinding
 
 class ListAdapter(
-    val listItem: List<String>
+    private val listItem: MutableList<String>
 ) : RecyclerView.Adapter<ListAdapter.ItemViewHolder>() {
 
     inner class ItemViewHolder(val listItemBinding: ListItemBinding) :
@@ -29,5 +29,11 @@ class ListAdapter(
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         holder.listItemBinding.textItem.text = listItem[position]
+    }
+
+    fun updateRecyclerView(list: List<String>) {
+        listItem.clear()
+        listItem.addAll(list)
+        notifyDataSetChanged()
     }
 }

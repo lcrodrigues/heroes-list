@@ -1,7 +1,5 @@
 package com.example.heroeslist.data.network
 
-
-import android.location.Address
 import com.example.heroeslist.data.model.comic.ComicWrapper
 import com.example.heroeslist.data.model.event.EventWrapper
 import com.example.heroeslist.data.model.hero.ResultWrapper
@@ -42,7 +40,9 @@ interface HeroesApi {
         @Path("address") address: String,
         @Query("apikey") apiKey: String = PUBLIC_KEY,
         @Query("ts") ts: String,
-        @Query("hash") hash: String = getMD5(ts)
+        @Query("hash") hash: String = getMD5(ts),
+        @Query("limit") limit: Int,
+        @Query("offset") offset: Int
     ): Response<ComicWrapper>
 
     @GET("characters/{characterId}/{address}")
@@ -51,7 +51,9 @@ interface HeroesApi {
         @Path("address") address: String,
         @Query("apikey") apiKey: String = PUBLIC_KEY,
         @Query("ts") ts: String,
-        @Query("hash") hash: String = getMD5(ts)
+        @Query("hash") hash: String = getMD5(ts),
+        @Query("limit") limit: Int,
+        @Query("offset") offset: Int
     ): Response<EventWrapper>
 
     @GET("characters/{characterId}/{address}")
@@ -60,7 +62,9 @@ interface HeroesApi {
         @Path("address") address: String,
         @Query("apikey") apiKey: String = PUBLIC_KEY,
         @Query("ts") ts: String,
-        @Query("hash") hash: String = getMD5(ts)
+        @Query("hash") hash: String = getMD5(ts),
+        @Query("limit") limit: Int,
+        @Query("offset") offset: Int
     ): Response<StoryWrapper>
 
     @GET("characters/{characterId}/{address}")
@@ -69,7 +73,9 @@ interface HeroesApi {
         @Path("address") address: String,
         @Query("apikey") apiKey: String = PUBLIC_KEY,
         @Query("ts") ts: String,
-        @Query("hash") hash: String = getMD5(ts)
+        @Query("hash") hash: String = getMD5(ts),
+        @Query("limit") limit: Int,
+        @Query("offset") offset: Int
     ): Response<SerieWrapper>
 
     companion object {

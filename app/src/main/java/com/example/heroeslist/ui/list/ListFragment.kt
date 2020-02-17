@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 import com.example.heroeslist.R
 import com.example.heroeslist.data.network.HeroesApi
@@ -65,27 +66,43 @@ class ListFragment : Fragment() {
         listFragmentBinding.itemRecyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
             setHasFixedSize(true)
-            adapter = ListAdapter(listOf())
+            adapter = ListAdapter(mutableListOf())
+
+            addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                    super.onScrollStateChanged(recyclerView, newState)
+
+                    val count = viewModel.itemList.value?.count() ?: 0
+                    if(!canScrollVertically(1) &&
+                            count < (viewModel.totalITems ?: 0) &&
+                            !viewModel.isWaitingForRequest) {
+                        getList()
+                    }
+                }
+            })
         }
     }
 
     private fun setReceivedData(list: MutableList<String>) {
         listFragmentBinding.itemRecyclerView.apply {
-            adapter = ListAdapter(list)
+            (adapter as ListAdapter).updateRecyclerView(list)
         }
 
         listFragmentBinding.loadingProgressBar.visibility = View.GONE
         listFragmentBinding.emptyContentMessage.apply {
-            if(list.isEmpty()) {
+            if (list.isEmpty()) {
                 text = requireContext().getString(
                     R.string.empty_list_template, args.mediaType.value.toLowerCase(
                         Locale.getDefault()
-                    ), args.heroName)
+                    ), args.heroName
+                )
 
                 visibility = View.VISIBLE
             } else {
                 visibility = View.GONE
             }
         }
+
+        viewModel.isWaitingForRequest = false
     }
 }
