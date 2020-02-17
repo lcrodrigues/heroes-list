@@ -8,5 +8,6 @@
     <string name="stories">Stories</string>
     <string name="detail_title_template">%1$s for %2$s</string>
     <string name="empty_list_template">There is no %1s for %2$s.</string>
+    <string name="disconnected">The device has no internet connection.</string>
 
 </resources>

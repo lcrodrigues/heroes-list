@@ -1,6 +1,7 @@
 package com.example.heroeslist.ui.heroes
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,9 @@ import com.example.heroeslist.R
 import com.example.heroeslist.data.model.hero.Hero
 import com.example.heroeslist.data.network.HeroesApi
 import com.example.heroeslist.data.repository.HeroesRepository
+import com.example.heroeslist.util.isConnected
+import com.example.heroeslist.util.showSnackbarConnection
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.heroes_fragment.*
 
 
@@ -46,8 +50,12 @@ class HeroesFragment : Fragment() {
             setReceivedData(it)
         })
 
-        if (viewModel.heroes.value.isNullOrEmpty()) {
-            getList()
+        if(isConnected()) {
+            if (viewModel.heroes.value.isNullOrEmpty()) {
+                getList()
+            }
+        } else {
+            showSnackbarConnection(requireView(), requireContext())
         }
     }
 

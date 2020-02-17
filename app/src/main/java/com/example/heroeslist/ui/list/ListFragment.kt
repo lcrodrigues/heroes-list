@@ -1,6 +1,7 @@
 package com.example.heroeslist.ui.list
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,8 @@ import com.example.heroeslist.R
 import com.example.heroeslist.data.network.HeroesApi
 import com.example.heroeslist.data.repository.HeroesRepository
 import com.example.heroeslist.databinding.ListFragmentBinding
+import com.example.heroeslist.util.isConnected
+import com.example.heroeslist.util.showSnackbarConnection
 import java.util.*
 
 class ListFragment : Fragment() {
@@ -54,7 +57,12 @@ class ListFragment : Fragment() {
         })
 
         setupRecyclerView()
-        getList()
+
+        if(isConnected()) {
+            getList()
+        } else {
+            showSnackbarConnection(requireView(), requireContext())
+        }
     }
 
     private fun getList() {

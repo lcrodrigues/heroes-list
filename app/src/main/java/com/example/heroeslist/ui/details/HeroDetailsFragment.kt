@@ -18,6 +18,8 @@ import com.example.heroeslist.data.model.hero.Hero
 import com.example.heroeslist.data.network.HeroesApi
 import com.example.heroeslist.data.repository.HeroesRepository
 import com.example.heroeslist.databinding.HeroDetailsFragmentBinding
+import com.example.heroeslist.util.isConnected
+import com.example.heroeslist.util.showSnackbarConnection
 
 class HeroDetailsFragment : Fragment() {
 
@@ -64,7 +66,12 @@ class HeroDetailsFragment : Fragment() {
             setReceivedData(it)
         })
 
-        getDetails(id)
+        if(isConnected()) {
+            getDetails(id)
+        } else {
+            showSnackbarConnection(requireView(), requireContext())
+        }
+
         setupButtons()
     }
 

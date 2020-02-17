@@ -14,5 +14,4 @@
     <style name="TextForCard" parent="AppTheme">
         <item name="android:textColor">@android:color/white</item>
     </style>
-
 </resources>
