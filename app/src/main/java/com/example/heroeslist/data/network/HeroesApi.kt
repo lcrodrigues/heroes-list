@@ -5,8 +5,6 @@ import com.example.heroeslist.data.model.event.EventWrapper
 import com.example.heroeslist.data.model.hero.ResultWrapper
 import com.example.heroeslist.data.model.serie.SerieWrapper
 import com.example.heroeslist.data.model.story.StoryWrapper
-import com.example.heroeslist.util.PUBLIC_KEY
-import com.example.heroeslist.util.BASE_URL
 import com.example.heroeslist.util.getMD5
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -86,5 +84,9 @@ interface HeroesApi {
                 .build()
                 .create(HeroesApi::class.java)
         }
+
+        const val PUBLIC_KEY = "8f4214a98e94658ffa0449436e102b43"
+        const val PRIVATE_KEY = "bbbee0bfb47fc353f88793f275dc437921608ed1"
+        const val BASE_URL = "https://gateway.marvel.com/v1/public/"
     }
 }
