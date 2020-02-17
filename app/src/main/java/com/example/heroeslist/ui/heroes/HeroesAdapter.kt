@@ -35,10 +35,15 @@ class HeroesAdapter(
         return heroesViewHolder
     }
 
-
     override fun getItemCount(): Int = heroesList.count()
 
     override fun onBindViewHolder(holder: HeroesViewHolder, position: Int) {
         holder.heroesListItemBinding.hero = heroesList[position]
+    }
+
+    fun updateRecyclerView(list: List<Hero>) {
+        heroesList.clear()
+        heroesList.addAll(list)
+        notifyDataSetChanged()
     }
 }

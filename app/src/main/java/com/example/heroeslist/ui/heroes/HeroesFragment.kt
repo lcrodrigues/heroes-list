@@ -40,9 +40,7 @@ class HeroesFragment : Fragment() {
 
         viewModel.heroes.observe(viewLifecycleOwner, Observer { heroes ->
             recyclerViewHeroes.apply {
-                (adapter as HeroesAdapter).heroesList.clear()
-                (adapter as HeroesAdapter).heroesList.addAll(heroes)
-                (adapter as HeroesAdapter).notifyDataSetChanged()
+                (adapter as HeroesAdapter).updateRecyclerView(heroes)
             }
 
             loadingProgressBar.visibility = View.GONE
