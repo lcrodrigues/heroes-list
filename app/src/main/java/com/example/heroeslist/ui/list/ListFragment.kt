@@ -16,6 +16,8 @@ import com.example.heroeslist.R
 import com.example.heroeslist.data.network.HeroesApi
 import com.example.heroeslist.data.repository.HeroesRepository
 import com.example.heroeslist.databinding.ListFragmentBinding
+import java.util.*
+
 class ListFragment : Fragment() {
 
     private lateinit var viewModel: ListViewModel
@@ -27,7 +29,8 @@ class ListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        listFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.list_fragment, container, false)
+        listFragmentBinding =
+            DataBindingUtil.inflate(inflater, R.layout.list_fragment, container, false)
         return listFragmentBinding.root
     }
 
@@ -39,7 +42,11 @@ class ListFragment : Fragment() {
 
         factory = ListViewModelFactory(repository)
         viewModel = ViewModelProvider(this, factory).get(ListViewModel::class.java)
-        (activity as AppCompatActivity).title = requireContext().resources.getString(R.string.detail_title_template, args.mediaType.value, args.heroName)
+        (activity as AppCompatActivity).title = requireContext().resources.getString(
+            R.string.detail_title_template,
+            args.mediaType.value,
+            args.heroName
+        )
 
         viewModel.itemList.observe(viewLifecycleOwner, Observer {
             setReceivedData(it)
@@ -68,5 +75,17 @@ class ListFragment : Fragment() {
         }
 
         listFragmentBinding.loadingProgressBar.visibility = View.GONE
+        listFragmentBinding.emptyContentMessage.apply {
+            if(list.isEmpty()) {
+                text = requireContext().getString(
+                    R.string.empty_list_template, args.mediaType.value.toLowerCase(
+                        Locale.getDefault()
+                    ), args.heroName)
+
+                visibility = View.VISIBLE
+            } else {
+                visibility = View.GONE
+            }
+        }
     }
 }
